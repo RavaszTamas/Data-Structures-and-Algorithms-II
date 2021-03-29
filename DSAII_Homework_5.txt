@@ -1,0 +1,10 @@
+Ravasz Tamás
+Assignment 5 
+For this problem we can consider a bipartite graph, where on the left we have each resource as a vertex and
+on the right each project as a vertex. Vertex S and the resources are connected having c(i) as capacity, the same way the projects are connected
+with the vertex t with capacity of r(i). Each resource which is related to a project is also connected with that project,
+with a capacity of infinity. Then we look for the maximul flow. After we have the maximum flow we can find the minimum cut.
+This minimum cut will represent the chosen resources and projects, if it is in the set where we also have the vertex s the source,
+the others which are in the set with t are not chosen. From the chosen projects, resources we can calculate the profit.
+The minimum cut we obtain must be of finite value otherwise, we have a case where a mincut is through an infinite capacity edge, which should
+not happen so a minimum cut satisfies the result.

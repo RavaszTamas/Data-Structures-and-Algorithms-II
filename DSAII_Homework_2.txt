@@ -1,0 +1,4 @@
+The problem of findig the longest common substring can be approached from two angles. 
+One of  the being a dynamic programing method the other is utilizing the Trie datastructure.
+
+1 - 

@@ -1,0 +1,15 @@
+Assignment 4 Ravasz Tamás
+
+The solution is that the chess board is represented as a bipartite graph,
+where are 8-8 nodes. All nodes from one side are connected to all the others on the other side.
+In this way we have 64 edges. Each edge between two nodes preresents a position on the chess board.
+Meaning second node from the top on the left, is conneted to the fifth node on the right represents
+the second row and the fifth column, (2,5) coordinates on the chess board.
+A hole is represented as such that, there is no edge between that particular row and column there.
+If there is a hole one the first row and the third columns' position (1,3), that means that there is no edge,
+between those two nodes, the first on the left and the third on the right.
+The matching of the rook is done by calculating the maximum flow, maximum matching on the bipartite graph.
+The edges which are used in the matching represent the position where a rook is put on the chessboard.
+Any possible maximum matching represents a state of rooks on the chessboard.
+The algorithm has a complexity of O(E * f) where f is the maximum flow and E is the number of edges.
+If we want all possible matching it has a factorial complexity.

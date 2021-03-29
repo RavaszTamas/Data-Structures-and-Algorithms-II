@@ -1,0 +1,40 @@
+Ravasz Tamás
+
+m-length of pattern P excluding the '*' - gap characters
+n-lengt of the text T
+P- the pattern a string
+T- text to search in
+i = 1
+j=1
+prevj = j
+charFound = 0
+while i < n
+do
+	nr = 0
+	while(j <= m and P[j] == T[i+j-1-charFound] and P[j] != '*') // this (charFound) represents the characters already found in the pattern
+	do															 // the represent the new starting position
+		j = j + 1
+		nr = nr + 1											     //number of currently found characters
+	done
+	if j > m then												 // the pattern is found if j is bigger than m ( number of characters in the pattern)
+		print("Found")
+		return
+	else if P[j] == '*' then									 // if we have a '*' gap
+		while P[j] == '*' do								     // i inserted this because I assumed that there can be multiple *-s after eachother
+			j = j + 1
+		done 
+		charFound = charFound + (j - prevj)					     // shift to the new starting position in the pattern
+		prevj = j // saving the new start for the next part of the pattern // and setting it for the new beginning
+		i = i+nr// setting i to the end of the first "part" of the pattern // and also shifting i with the number of processed characters in the text
+		while T[i] != P[j] do
+			i = i + 1
+		done
+	else														// if there is an error we move to the next character in the text
+		j = prevj
+		i = i + 1
+done
+print("not found")
+
+Best case: O(m) no gaps, found at the start
+Average Case O(n) 
+Worst Case O(n*m) pattern not found in the text

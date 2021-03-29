@@ -1,0 +1,34 @@
+For this problem an additional array is used, in which
+on each position we store the maximum depth obtained by the wire
+and in the end the maximum element in there will be the result,
+which represents the depth of the comparison network
+
+Input: comp : array, representing the comparators, each element has two components
+	      representing a comparator between those two wires
+	      first one wire, second the other wire
+Output: totalDepth: contains the total depth of the comparison network
+i = 1
+while i < n
+do
+	depth[i] = 0
+	i = i + 1
+done
+
+i = 1
+totalDepth = 0
+while i < c 
+do
+	index1 = comp[i].first
+	index2 = comp[i].second
+	currentDepth = 1 + max(depth[index1],depth[index2])
+	depth[index1] = currentDepth
+	depth[index2] = currentDepth
+	totalDepth = max(totalDepth,currentDepth)
+	i = i + 1
+done
+
+return totalDepth
+
+Overall complexity is O(n + c) because if we have more wires that comparators it runs for O(n)
+otherwise O(c)
+

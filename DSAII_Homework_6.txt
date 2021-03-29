@@ -1,0 +1,9 @@
+For this problem, to obtain the minimum cut with the smallest amount of edges, the capacity of the edges.
+Have to be increased in G' in order to find the cut with the smallest number of edges.
+The capacity of the edges in G' will be c' = c * (|E|+1) + 1 where, c is the capacity in G( the original),
+|E| is the number of edges. In this way if a cut is present in G' it will be also a cut in G.
+In this way the old max flow f will be f' = f * (|E| + 1) + k, k is the number of edges crossing that cut.
+Given this if we consider any other cut in the original graph G, the capacity of which should be higher by 1 or more,
+it will mean that, that cut's capacity will be bigger than the min cut in G' so any cut in the original graph that 
+isn't a minimum cut won't be a minimum cut in the transformed graph G', either. It's supposed only to break ties between 
+paths with equal augmenting capacity. Also a minimum cut in the graph G' will be a cut in G that it will have the smallest amount of edges.

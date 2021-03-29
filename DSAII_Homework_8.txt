@@ -1,0 +1,11 @@
+The list of values represent the roots of the polynomial, meaning we can write the polynomial as a product of
+(x-z(1))*(x-z(2))*...(x-z(n-1)), evaluating this product will yield the polynomials. The naive solution would result
+in a time complexity of O(n^2). Using the Fast Fourier Transform the product can be evaluated using a divide and
+conquer method. The method divides up the input as the first (1,...,n/2) polynomials as ((x-z(1))*(x-z(2))*...(x-z((n-1)/2)) and the rest
+(x-z(1+(n-1)/2))*(x-z(2))*...(x-z(n-1)). If during the recursive call the number of polynomials is 1 then we return the polynomial, if the 
+number of polynomials is 2 then we multiply them together, here for the multiplication we use the FFT to do the computation of the polynomials in
+O(n+log(n)) time complexity, then do IFFT to make it useful for further use.
+Using the divide and conquer method we have the complexity as:
+T(n) = T(n/2) * 2 + O(multiplying the polynomials) so
+T(n) = T(n/2) * 2 + O(n*log(n)) 
+which is O(n*log^2(n)).

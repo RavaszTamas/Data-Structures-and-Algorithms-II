@@ -1,0 +1,59 @@
+DSAII - Homework 3
+Ravasz Tamás
+
+input: P[1..m] - string, the pattern, length = m
+//The KMP algorithm is used to determine all the cases of the fail/backward function
+// lenght of the previous
+// longest prefix suffix
+
+// arrays here are indexed from 0
+
+//lps represents the longest proper suffix(and prefix), where we backtrack in case of fail during a pattern matching
+
+len = 0
+lps[0] = 0; // lps[0] is always 0
+i = 0
+
+// the loop calculates lps[i]
+// for i = 0 to M-1
+
+while i < M do              //the KMP preprocessing is used to determine the longest proper suffix which is also a prefix, to identify possible cases of 
+							//repetition
+    if P[i] == P[len] then
+	
+        len = len + 1
+        lps[i] = len
+        i = i + 1
+		
+    else
+        if len != 0 then
+		
+            len = lps[len-1]
+        else
+		
+            lps[i] = 0
+            i = i + 1
+done
+
+i = 0
+while i < m do
+
+	len = lps[i-1]
+	n = length(P(i));//length of the current prefix until the i-th index
+	if len > 0 && n%(n - len) == 0 then //len represents the length of the longest proepr suffix which is also a prefix
+										// (n - len) represents the fact that how many characters do we jump back from the end of the string(in this case
+										// the end of the current prefix) in case of a fail
+										// if n is divisible by (n-len) it means that up until that index we go back there is a repeated substring (the longest 
+										// proper prefix is also the suffix there)
+										// otherwise longest proper prefix is also the longest proper suffix
+										// the number of repetitions is n/(n-len),
+		print(n/(n-lps[i-1]));
+	else								// if len is 0 that means we have no proper suffix which is a prefix so implicitly r is equal to 1
+		print(1);						// if n is not divisible by n-len that means we don't have a repetition so 1 is also printed out
+	i = i + 1
+done
+        
+end algorithm
+
+The complexity is O(n), beacuse it uses the KMP preprocessing which has a linear time and for findig the proper r values for every prefix
+the complexity is O(n) so the overall complexity is O(n)

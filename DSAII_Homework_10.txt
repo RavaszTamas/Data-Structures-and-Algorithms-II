@@ -1,0 +1,13 @@
+For the n bit input we have n/2 gates, which perform a disjunction for two bits from the input,
+every 2 bit has only one gate, and every two bit is used only once, so on the first comparison we have n/2 comaprisons,
+then we take the results of those comparisons and apply this notion recursively in the end we have log2(n) levels
+overall for any n.
+
+For n = 2
+	 result
+	|
+	O
+       / \
+      O   O
+     / \ / \
+     a b c d
